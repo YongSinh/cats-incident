@@ -1,0 +1,63 @@
+     {role.includes('INCIDENT_ADMIN','INCIDENT_HANDLER') ? (
+       <Routes>
+       <Route element={<Layout2 />}>
+         <Route path="*" element={<Navigate to="/home" />} />
+         <Route path='/home' element={<ClientHome />} />
+         <Route path='/requested' element={<PageClientReq />} />
+         <Route path='/all-request' element={<Allrequest />} />
+         <Route path='/request' element={<RequsetPage />} />
+         <Route path='/requestRep/:id' element={<PageViewRep />} />
+         <Route path='/requestReq/:id' element={<PageViewReq />} />
+         <Route path='/responsible/:id' element={<PageResponsible />} />
+         <Route path='/acceptable/:id' element={<PageCloseTicket />} />
+         <Route path='/work-task' element={<RolesRoute roles={['INCIDENT_HANDLER']}>
+           <PageWorkTask />
+         </RolesRoute>} />
+       </Route>
+
+
+         </Routes>
+
+
+      ) 
+      : 
+      (
+      
+          <Routes>
+            <Route  element={<LayoutOne />}>
+                      <Route path="/admin" element={<HomeScreen />} />
+                      <Route path='/admin-all-request' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <Allrequest />
+                      </RolesRoute>} />
+                      <Route path='/admin-close' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <PageClose />
+                      </RolesRoute>} />
+                      <Route path='/admin-response' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <PageRespone />
+                      </RolesRoute>} />
+                      <Route path='/admin-process' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <PageProccess />
+                      </RolesRoute>} />
+                      <Route path='/admin-isouser' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <User />
+                      </RolesRoute>} />
+                      <Route path='/admin-service' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <PageService />
+                      </RolesRoute>} />
+                      <Route path='/admin-categorization' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <CategorizationPage />
+                      </RolesRoute>} />
+                      <Route path='/admin-priority' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <PagePriority />
+                      </RolesRoute>} />
+                      <Route path='/admin-station-manager' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <PageStationManger />
+                      </RolesRoute>} />
+
+                      <Route path='/admin-report' element={<RolesRoute roles={['INCIDENT_ADMIN']}>
+                        <ReportTickets />
+                      </RolesRoute>} />
+                    </Route>
+          </Routes>
+        )
+ 

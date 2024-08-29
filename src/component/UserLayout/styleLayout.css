@@ -1,0 +1,50 @@
+.LayOutUser, h2{  
+    color: #ffff;
+    font-weight: bold;
+}
+.LayOutUser img{
+    width: 100%;
+    max-width: 110px;
+    margin-left: 10px;
+}
+/* .headerLayoutOne{
+    height: 00px;
+} */
+/* 
+.logo2{ 
+    width: 30px;
+   margin-bottom: 10px;
+  } */
+
+.profile{
+    float: right;
+}
+.LayOutUser{
+    overflow: hidden;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.header {
+    padding-bottom: 0;
+    padding-top: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #000c64;
+  }
+  
+
+  .visible {
+    /* display: flex; */
+    top: 0;
+    transition: top 0.4s ease-out;
+  }
+  
+  .hidden {
+    /* display: none; */
+    top: -80px;
+    transition: top 0.4s ease-out;
+  }

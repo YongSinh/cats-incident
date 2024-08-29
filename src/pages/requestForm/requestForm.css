@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+.center {
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.logo {
+  max-width: 205px;
+  width: 100%;
+  padding-top: 10px;
+}
+
+.title_requset {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size:3.5vw;
+  width: auto;
+  color: #1B0C80;
+}
+.classB{
+  text-align: center;
+  border-color: #1B0C80;
+  border-bottom: 1px solid;
+  border-radius: 0px;
+  height: 20px;
+  width: 100%;
+}
+.classA{
+  display:flex
+}
+
+.classA p{
+  margin: 5px 10px 0px 0px;
+}
+.part{
+  height: 35px;
+  width: 100%;
+  margin: 22px auto;
+  background-color: #1B0C80;
+}
+.part_incident{
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  color: #fff;
+  margin: auto;
+  padding-left: 10px;
+  text-transform: uppercase;
+}
+.anticon-down-circle{
+  position: absolute;
+  top: 3px;
+  right: 20px;
+  float: right;
+}
+
+.incidentp1{
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 28px;
+
+color: #1B0C80;
+
+
+}

@@ -1,0 +1,304 @@
+import { useEffect, useState } from "react";
+import { request } from "../../config/api.config"
+import { Button, Space, Table, Tag, message, Popconfirm, DatePicker, Input } from "antd";
+import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import { formatDateForClient, isEmptyOrNull } from "../../config/service"
+import dayjs from "dayjs";
+import generatePDF from "../../utilities/reportGenerator";
+import generatePDF2 from "../../utilities/reportGenerator2";
+const { Search } = Input;
+const ReportTickets = () => {
+    const [data, setdata] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [month, setmonth] = useState("");
+    const [year, setyear] = useState("");
+    const [monthyear, setmonthyear] = useState("");
+    useEffect(() => {
+        getList()
+    }, [])
+    const [tickets, setTickets] = useState([]);
+
+    const onChange = (date, dateString) => {
+        // Parse the date string and create a date object.
+        const parsedDate = dayjs(dateString);
+
+        // Format the date object and return the month as a string.
+        const month = parsedDate.format("M");
+        const year = parsedDate.format("YYYY");
+        setmonth(month)
+        setyear(year)
+        setmonthyear(dateString)
+    };
+
+    const getList = async () => {
+        setLoading(true)
+        request("get", "requests", {}).then(res => {
+            if (res.status == 200) {
+                setLoading(false)
+                var data = res.data
+                setdata(data.data)
+                //console.log(data)
+            }
+        })
+    }
+    const onSearch = (value) => {
+        if (!isEmptyOrNull(value)) {
+            const filtered = data.filter(item => {
+                return item.serviceID === value
+            });
+            setdata(filtered)
+            setTickets(filtered)
+        }
+    };
+
+    const onFilterDate = (text) => {
+        setLoading(true);
+        var param = "";
+        if (!isEmptyOrNull(text)) {
+            param = "report?" + "month" + "=" + month + "&" + "year" + "=" + year// query parameter
+        }
+
+        console.log(param);
+        request("get", "requests/" + param, {})
+            .then(res => {
+                setLoading(false);
+                if (res.status == 200) {
+                    setLoading(false);
+                    var data = res.data;
+                    setdata(data.data);
+                    setTickets(data.data)
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    };
+
+    const reportTickets = tickets.filter(ticket => {
+        const createDate = dayjs(monthyear).format("YYYY-MM");
+        return dayjs(ticket.createDate).format("YYYY-MM") == createDate;
+    });
+
+    return (
+        <>
+            <Space
+                style={{
+                    marginBottom: 16,
+                }}
+            >
+
+                <DatePicker onChange={onChange} picker="month" />
+                <Button onClick={onFilterDate}>filters and sorters Date</Button>
+                <Search placeholder="input search text" onSearch={onSearch} enterButton />
+                <Popconfirm
+                    title="Download the Report"
+                    description="Are you sure to Download this Report?"
+                    onConfirm={() => generatePDF2(reportTickets)}
+                    okText="Yes"
+                    cancelText="No"
+                >
+                    <Button>Download</Button>
+                </Popconfirm>
+
+            </Space>
+            <Table
+
+                //   rowKey={'id'}
+                columns={[
+                    {
+                        title: "No",
+                        render: (item, items, index) => index + 1,
+                        key: "No",
+                        fixed: true,
+
+                    },
+                    ,
+                    {
+
+                        title: 'ID',
+                        dataIndex: 'id',
+                        key: 'id',
+                        fixed: true,
+
+                    },
+                    {
+
+                        title: 'FromEmp',
+                        dataIndex: 'fromEmp',
+                        key: 'fromEmp',
+
+
+                    },
+                    {
+                        key: 'FromDept',
+                        title: 'FromDept',
+                        dataIndex: "fromDept",
+
+
+                    }
+                    ,
+                    {
+                        title: 'FromLocal',
+                        dataIndex: "fromLocal",
+                        key: 'fromLocal',
+
+                    }
+                    ,
+                    {
+                        title: 'FromDept',
+                        dataIndex: 'fromDept',
+                        key: 'FromDept',
+                    }
+                    ,
+                    {
+                        title: 'FromGroup',
+                        dataIndex: "fromGroup",
+                        key: 'FromGroup',
+
+                    }
+                    ,
+                    {
+                        title: 'Type',
+                        dataIndex: "type",
+                        key: 'Type',
+
+                    }
+                    ,
+                    {
+                        title: 'Other',
+                        dataIndex: "other",
+                        key: 'other',
+                    }
+                    ,
+                    {
+                        title: 'Expiry date',
+                        dataIndex: "expDate",
+                        key: 'expDate',
+                        render: (item) => formatDateForClient(item),
+
+                    },
+                    {
+                        title: 'create Date',
+                        dataIndex: "createDate",
+                        key: 'createDate',
+                        render: (item) => formatDateForClient(item),
+
+                    },
+                    {
+                        title: 'Description',
+                        dataIndex: "description",
+                        key: 'Description',
+                        width: 400,
+                        ellipsis: true,
+
+                    }
+                    ,
+                    {
+                        title: 'Purpose',
+                        dataIndex: "purpose",
+                        key: 'purpose',
+                        width: 400
+                    }
+                    ,
+                    {
+
+                        title: 'To Emp',
+                        dataIndex: 'toEmp',
+                        key: 'toEmp',
+
+
+                    },
+                    {
+                        key: 'toDept',
+                        title: 'To Dept',
+                        dataIndex: "toDept",
+
+
+                    }
+                    ,
+                    {
+                        title: 'To Local',
+                        dataIndex: "toLocal",
+                        key: 'toLocal',
+
+                    }
+                    ,
+                    {
+                        title: 'To Group',
+                        dataIndex: 'toGroup',
+                        key: 'FrotoGroupmDept',
+                    }
+                    ,
+                    {
+                        title: 'To Sup',
+                        dataIndex: "toSup",
+                        key: 'toSup',
+
+                    }
+                    ,
+                    {
+                        title: 'To Head',
+                        dataIndex: "toHead",
+                        key: 'toHead',
+
+                    }
+
+                    ,
+                    {
+                        title: 'Prioritization',
+                        dataIndex: "prioId",
+                        key: 'prioId',
+
+                    }
+                    ,
+                    {
+                        title: 'Categorization',
+                        dataIndex: "cateoId",
+                        key: 'cateoId',
+
+                    }
+                    ,
+                    {
+                        title: 'Service',
+                        dataIndex: "serviceID",
+                        key: 'serviceID',
+
+                    },
+                    {
+                        key: 'proId',
+                        title: 'Status',
+                        dataIndex: "proId",
+                        render: (item, items, index) => {
+                            let color = item?.length > 5 ? 'geekblue' : 'green';
+                            if (item == "Not Started") {
+                                color = 'red';
+                            } else if (item == "In Progress") {
+                                color = 'green';
+                            } else if (item == "Completed") {
+                                color = 'geekblue';
+                            }
+                            else {
+                                color = 'geekblue';
+                            }
+                            return (
+                                <Tag color={color}>
+                                    {item}
+                                </Tag>
+
+                            )
+                        }
+
+                    }
+
+
+
+
+                ]}
+                dataSource={data}
+                scroll={{ x: 'max-content' }}
+            />
+        </>
+    );
+};
+
+export default ReportTickets;

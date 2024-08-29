@@ -1,0 +1,12 @@
+.repMeassage{
+    width: 100%;
+    height: 140px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+.colMeassage{
+    width: 100%;
+    height: 90px;
+    overflow: auto;
+    margin-bottom: 10px;
+}

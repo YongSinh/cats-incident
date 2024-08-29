@@ -1,0 +1,19 @@
+.box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+.box .card{
+    box-shadow: 5px 5px 20px #1616164a;
+}
+.body{
+ background-image: url("./asset/image/darkblue.jpg");
+ height: 100%;
+ min-height: 100vh;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+/* background-color: #DAF5FF; */

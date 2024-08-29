@@ -1,0 +1,10 @@
+{
+  "realm": "development",
+  "auth-server-url": "https://www.cats.com.kh/auth",
+  "ssl-required": "external",
+  "resource": "incident-system-frontend",
+  "public-client": true,
+  "verify-token-audience": true,
+  "use-resource-role-mappings": true,
+  "confidential-port": 0
+}

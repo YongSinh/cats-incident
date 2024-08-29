@@ -1,0 +1,79 @@
+.iconProfile{
+    font-size: 16px;
+    color : 'red';
+  }
+
+
+  .headerLayoutOne div h2{  
+    color: #1B0C80;
+    font-weight: bold;
+}
+  .headerLayoutOne{
+    height: 60px;
+    overflow: hidden;
+    background-color: whitesmoke;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .mainBody{
+    overflow: auto;
+  }
+
+  .logoLayoutOne1{
+    height: 120px;
+    width: 100%;
+    padding: 10px;
+    
+  }
+  
+  .profileContain{
+    background-color: #FFF;
+    height: 50px;
+    width: 100%;
+    /* border-radius: 50%; */
+    transition: width 0.5s, ;
+  }
+  
+  .profileContainAnimate {
+    width : 100%;
+    height: 50px;
+    background-color: #FFF;
+    /* height : 0px; */
+    transition: width 0.5s;
+    display: block;
+  }
+  .logo img{
+    width: 100%;
+    max-width: 165px;
+    height: auto;
+    display: block;
+    margin: auto;
+    padding: 5px;
+  }
+  .logo{ 
+    padding-top: 10px;
+    margin: 10px auto;
+  }
+  .bk{
+    background-color: #00137e;
+  }
+  .Ticket{
+    color: #FFF;
+    
+    margin-left: 10px;
+  }
+  /* .ant-menu-title-content{
+    font-weight: bold;
+  } */
+  /* .ant-menu-item:hover {
+  color: #00137e;
+  background-color: #ffffff;
+  } */
+
+  .sider{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    height: 100vh;
+  }

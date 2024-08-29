@@ -1,0 +1,35 @@
+.headerLayoutTwo div h2{  
+    color: #1B0C80;
+    font-weight: bold;
+}
+.logo2 img{
+    width: 100%;
+    max-width: 130px;
+    margin: auto;
+    padding: 5px;
+    display: block;
+}
+/* .headerLayoutOne{
+    height: 00px;
+} */
+
+.layout2, .menu2{
+    background-color: #000c64;
+}
+.logo{ 
+    margin: 10px auto;
+  }
+
+.ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline{
+    background-color: #000a57;
+}
+
+.headerLayoutTwo{
+    height: 60px;
+    overflow: hidden;
+    background-color: whitesmoke;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }

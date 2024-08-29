@@ -1,0 +1,37 @@
+<BrowserRouter basename="/">
+            {!is_dashboard && <Routes>
+                <Route path="/" element={<h1>Home</h1>} />
+                <Route path="product" element={<h1>Product</h1>} />
+                <Route path="category" element={<h1>Category</h1>} />
+              </Routes>}
+
+            {is_dashboard &&
+              <div>
+                {!isLogin ? (
+                  <Routes>
+                    <Route path="*" element={<Navigate to="/login" />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                  </Routes>
+                ) : (
+                  <LayoutOne>
+                    <Routes>
+                      <Route path="dashboard" >
+                          <Route path="" element={<HomePage />} />
+                          <Route path="customer" element={<CustomerPage />} />
+                          <Route path="category" element={<CategoryPage />} />
+                          <Route path="user" element={<User />} />
+                          <Route path="product" element={<ProductPage />} />
+                          <Route path="payment-method" element={<PaymentMethodPage />} />
+                          <Route path="order-status" element={<OrderStatusPage />} />
+                          <Route path="cart" element={<CartPage />} />
+                          <Route path="wishlist" element={<WishList />} />
+                          <Route path="*" element={<h1>Route Not Found!</h1>} />
+                      </Route>
+                    </Routes>
+                  </LayoutOne>
+                )
+                }
+              </div>
+          }
+    </BrowserRouter>
